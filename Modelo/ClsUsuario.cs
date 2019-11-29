@@ -122,39 +122,32 @@ namespace Modelo
             }
         }
 
-        public static int ModificarUsuario(int persoanId, string nombre, string apellido, string correo,
-                                    string clave, int ciudadId, List<int> colores)
+        public static int ModificarUsuario(int personaId, string nombre, string apellido, string correo,
+                                    string clave, int ciudadId)
         {
             int resultado = 0;
             EntidadesDataContext entity = new EntidadesDataContext();
-            Persona persona = ConsultarPorCURP(CURP);
 
-            if (persona == null)
+            Persona persona = new Persona();
+            persona.PersonaId = personaId;
+            persona.Nombre = nombre;
+            persona.Apellido = apellido;
+            persona.Correo = correo;
+            persona.Clave = clave;
+            persona.CiudadId = ciudadId;
+
+            try
             {
-                persona = new Persona();
-                persona.CURP = CURP;
-                persona.Nombre = nombre;
-                persona.Apellido = apellido;
-                persona.Correo = correo;
-                persona.Clave = clave;
-                persona.CiudadId = ciudadId;
-
-                try
-                {
-                    entity.Persona.InsertOnSubmit(persona);
-                    entity.SubmitChanges();
-                }
-                catch (Exception)
-                {
-                    resultado = 2;
-                }
+                entity.SubmitChanges();
+                resultado = 3;
             }
-            else
+            catch (Exception)
             {
-                resultado = 1;
+                resultado = 2;
             }
 
             return resultado;
+
         }
 
         public static Persona ConsultarPorCURP(string curp)

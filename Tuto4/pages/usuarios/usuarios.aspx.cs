@@ -68,6 +68,8 @@ namespace Tuto4.pages.usuarios
             ListItem ciudadUsuario = ddlCiudad.Items.FindByValue(persona.CiudadId.ToString());
             if (ciudadUsuario != null)
                 ciudadUsuario.Selected = true;
+
+            modificar.Visible = true;
         }
 
         private void ListarCiudades()
@@ -99,13 +101,22 @@ namespace Tuto4.pages.usuarios
 
         protected void lnkModificar_Click(object sender, EventArgs e)
         {
-            int personaId = int.Parse(hfPersonaId.Value)
-            string CURP = txtCURP.Text;
+            int personaId = int.Parse(hfPersonaId.Value);
             string nombre = txtNombre.Text;
             string apellido = txtApellido.Text;
             string correo = txtCorreo.Text;
             string clave = txtClave.Text;
             int ciudadId = int.Parse(ddlCiudad.SelectedValue);
+
+            int resultado = ClsUsuario.ModificarUsuario(personaId, nombre, apellido, correo, clave, ciudadId);
+
+            if (resultado == 2)
+                Response.Write("<script> alert(" + "'Ocurrio un error al realizar el registro'" + ")</script>");
+            else if (resultado == 3)
+                Response.Write("<script> alert(" + "'Registro exitoso'" + ")</script>");
+
+            LimpiarTextBox();
+
         }
 
         private void LimpiarTextBox()

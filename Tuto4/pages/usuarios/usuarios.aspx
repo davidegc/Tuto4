@@ -79,11 +79,11 @@
                     <div class="col-12 forgot">
                         <asp:LinkButton ID="lnkModificar" runat="server" OnClick="lnkModificar_Click" CausesValidation="false"></asp:LinkButton>
 
+                    </div>
+                    <!--- End of Modal Content --->
                 </div>
-                <!--- End of Modal Content --->
             </div>
         </div>
-
     </div>
     <%-- / Formulario de modificación
 
@@ -100,5 +100,4 @@
         </div>
     </div>
     <%--Tabla de usuarios--%>
-
 </asp:Content>
