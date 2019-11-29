@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Sistema" Class="EntidadesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-14SLB90\SQLEXPRESS;Initial Catalog=Sistema;Integrated Security=True" SettingsObjectName="Modelo.Properties.Settings" SettingsPropertyName="SistemaConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Ciudad" Member="Ciudad">
+    <Type Name="Ciudad">
+      <Column Name="CiudadId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Association Name="Ciudad_Persona" Member="Persona" ThisKey="CiudadId" OtherKey="CiudadId" Type="Persona" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PersonaColor" Member="PersonaColor">
+    <Type Name="PersonaColor">
+      <Column Name="PersonaId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ColorId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Color_PersonaColor" Member="Color" ThisKey="ColorId" OtherKey="ColorId" Type="Color" IsForeignKey="true" />
+      <Association Name="Persona_PersonaColor" Member="Persona" ThisKey="PersonaId" OtherKey="PersonaId" Type="Persona" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Color" Member="Color">
+    <Type Name="Color">
+      <Column Name="ColorId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="Hexadecimal" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Association Name="Color_PersonaColor" Member="PersonaColor" ThisKey="ColorId" OtherKey="ColorId" Type="PersonaColor" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Persona" Member="Persona">
+    <Type Name="Persona">
+      <Column Name="PersonaId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CURP" Type="System.String" DbType="VarChar(18) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="Apellido" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="CiudadId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Persona_PersonaColor" Member="PersonaColor" ThisKey="PersonaId" OtherKey="PersonaId" Type="PersonaColor" />
+      <Association Name="Ciudad_Persona" Member="Ciudad" ThisKey="CiudadId" OtherKey="CiudadId" Type="Ciudad" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,88 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="Tuto4.resources.master.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+
+<head runat="server">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link href="resources/css/sesion.css" rel="stylesheet" />
+     <script src="https://kit.fontawesome.com/b7c6d527ac.js"></script>
+</head>
+
+<body>
+
+    <form runat="server">
+
+        <header>
+
+        <%-- / Menú de navegación--%>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a runat="server" class="nav-link" href="~/pages/usuarios/usuarios.aspx">Usuarios</a>
+                    </li>
+
+                    <%--Menú desplegable--%>
+                    <li class="nav-item dropdown">
+                        <%--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>--%>
+                        <asp:Label ID="lblNombre" runat="server" Text="" CssClass="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></asp:Label>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Busque</a>
+                            <a class="dropdown-item" href="#">Busqueda por OCR</a>
+                            <a class="dropdown-item" href="#">Agregar Expediente</a>
+                            
+                            <div class="dropdown-divider"></div>
+
+                                <a class="dropdown-item" href="#">Administrador</a>
+
+                            <div class="dropdown-divider"></div>
+
+                            <div class="form-group">
+                                <%--<i class="fas fa-times-circle form-icons"></i>--%>
+                                <asp:LinkButton ID="lnkCerrarSesion" runat="server" OnClick="lnkCerrarSesion_Click" CssClass="dropdown-item form-text">Cerrar Sesión</asp:LinkButton>
+                                
+                            </div>
+
+                              <%--  <asp:TextBox ID="txtCURP" runat="server" CssClass="form-control form-text" placeholder="Usuario"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvCurp" runat="server" ErrorMessage="Campo requerido" Display="none" ControlToValidate="txtCURP"></asp:RequiredFieldValidator>
+             --%>
+                        </div>
+                    </li>
+                    <%-- / Menú desplegable--%>
+                </ul>
+
+            </div>
+        </nav>
+        <%-- / Menú de navegación--%>
+
+        </header>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
